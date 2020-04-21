@@ -11,7 +11,8 @@ namespace VentaRepuestoProgram
 
         // sobreescribir el metodo ToString() de la clase object
         public override string ToString() {
-            return "Repuesto codigo: " + Codigo + ", nombre: " + Nombre;
+            return "Repuesto codigo: " + Codigo + ", nombre: " + Nombre + ", stock: " 
+                + Stock + ", precio: " + Precio;
         }
 
     }

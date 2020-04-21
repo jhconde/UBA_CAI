@@ -32,7 +32,13 @@ namespace VentaRepuestoProgram
         public double Precio
         {
             get { return _precio; }
-            set { _precio = value; }
+            set { 
+                if (value < 0)
+                {
+                    throw new Exception("Precio negativo");
+                }
+                _precio = value;
+            }
         }
         public int Stock
         {
