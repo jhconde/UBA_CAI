@@ -15,7 +15,8 @@ namespace CAI_Ejercicio_14
             int numero = Int32.Parse(Console.ReadLine());
             for (int i = 1; i <= 10; i++)
             {
-                Console.WriteLine(numero + " x " + i + " = " + numero * i);
+                int producto = numero * i;
+                Console.WriteLine(numero + " x " + i + " = " + producto);
             }
             Console.ReadLine(); // mantiene la consola abierta
         }
