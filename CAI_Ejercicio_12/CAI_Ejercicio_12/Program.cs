@@ -23,11 +23,11 @@ namespace CAI_Ejercicio_12
             DateTime fecha2 = obtenerFecha();
 
             double totalDias = (fecha2 - fecha1).TotalDays;
-            int años = (int) totalDias / 365;
-            int meses = ((int) totalDias % 365) / 30;
-            int dias = (int) ((int) totalDias % 365) % 30;
+            double años = totalDias / 365;
+            double meses = (totalDias % 365) / 30;
+            double dias = totalDias % 365 % 30;
 
-            Console.WriteLine("La diferencia es de " + años + " años, " + meses + " meses y " + dias + " días");
+            Console.WriteLine("La diferencia es de " + ((int) años) + " años, " + ((int) meses) + " meses y " + ((int) dias) + " días");
 
             Console.ReadLine(); // mantiene la consola abierta
         }
