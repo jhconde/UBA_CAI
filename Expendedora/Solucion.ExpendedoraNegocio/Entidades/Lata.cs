@@ -15,9 +15,18 @@ namespace Solucion.ExpendedoraNegocio.Entidades
         private double _precio;
         private double _volumen;
 
+        public Lata(string codigo, string nombre, string sabor, double precio, double volumen)
+        {
+            _codigo = codigo;
+            _nombre = nombre;
+            _sabor = sabor;
+            _precio = precio;
+            _volumen = volumen;
+        }
+
         private double GetPrecioPorLitro()
         {
-            return _precio;
+            return 1000 * _precio / _volumen;
         }
 
         // Getters/Setters
@@ -53,7 +62,7 @@ namespace Solucion.ExpendedoraNegocio.Entidades
 
         public override string ToString()
         {
-            return "Lata codigo: " + _codigo + ", nombre: " + _nombre;
+            return _nombre + " - " + _sabor + " $" + _precio + " /  $/L " + (int) GetPrecioPorLitro();
         }
     }
 }

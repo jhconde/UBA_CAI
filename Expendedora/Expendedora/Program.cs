@@ -1,4 +1,5 @@
 ﻿using Solucion.ExpendedoraNegocio.Entidades;
+using Solucion.ExpendedoraNegocio.Helpers;
 using Solucion.LibreriaConsola;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,14 @@ namespace Solucion.Consola
         {
             bool continuarActivo = true;
 
-            string menu = "0) Encender Expendedora \n1) Listar Latas \nC) Limpiar Consola \nX) Salir";
+            string menu = "0) Encender Expendedora \n" +
+                "1) Listar Latas \n" +
+                "2) Insertar Lata \n" +
+                "3) Extraer Lata \n" +
+                "4) Balance \n" +
+                "5) Stock \n" +
+                "C) Limpiar Consola \n" +
+                "X) Salir";
 
             // Creo el objeto con el que voy a trabajar en este programa
             Expendedora expendedora = new Expendedora("Proveedor Test");
@@ -38,6 +46,18 @@ namespace Solucion.Consola
                             break;
                         case "1":
                             Program.ListarLatasElegibles();
+                            break;
+                        case "2":
+                            Program.IngresarLata(expendedora);
+                            break;
+                        case "3":
+                            Program.ExtraerLata(expendedora);
+                            break;
+                        case "4":
+                            Program.ObtenerBalance(expendedora);
+                            break;
+                        case "5":
+                            Program.MostrarStock(expendedora);
                             break;
                         case "C":
                             Console.Clear();
@@ -67,39 +87,114 @@ namespace Solucion.Consola
 
         private static void EncenderExpendedora(Expendedora expendedora)
         {
-            // validar si ya esta encendida
-            expendedora.Encendida = true;
+            expendedora.EncenderMaquina();
             Console.WriteLine("Maquina encendida\n");
         }
 
         private static void ListarLatasElegibles()
         {
-            Console.WriteLine("CO1 - Coca Cola Regular\n"
-                + "CO2 - Coca Cola Zero\n"
-                + "SP1 - Sprite Regular\n"
-                + "SP2 - Sprite Zero\n"
-                + "FA1 - Fanta Regular\n"
-                + "FA2 - Fanta Zero");
+            string latasElegibles = "";
+            List<string> catalogo = ExpendedoraHelper.ObtenerCatalogo();
+            for (int i = 0; i < catalogo.Count; i++)
+            {
+                latasElegibles = latasElegibles + catalogo[i] + "\n";
+            }
+            Console.WriteLine(latasElegibles);
+        }
+
+        private static void ListarStockDetalle(Expendedora expendedora)
+        {
+            string stockDetalleString = "";
+            List<string> stockDetalle = expendedora.GetStockDetalle();
+            for (int i = 0; i < stockDetalle.Count; i++)
+            {
+                stockDetalleString = stockDetalleString + stockDetalle[i] + "\n";
+            }
+            Console.WriteLine(stockDetalleString);
         }
 
         private static void IngresarLata(Expendedora expendedora)
         {
-            // completar
+            if (expendedora.Encendida)
+            {
+                if (expendedora.GetCapacidadRestante() == 0)
+                {
+                    Console.WriteLine("Maquina llena");
+                    return;
+                }
+                ListarLatasElegibles();
+                string codigo = ConsolaHelper.PedirString("Codigo: ");
+                if (!ExpendedoraHelper.EsCodigoValido(codigo))
+                {
+                    Console.WriteLine("Codigo invalido");
+                    return;
+                }
+                double precio = ConsolaHelper.PedirDouble("Precio: ");
+                double volumen = ConsolaHelper.PedirDouble("Volumen: ");
+                string marca = ExpendedoraHelper.ObtenerMarca(codigo);
+                string sabor = ExpendedoraHelper.ObtenerSabor(codigo);
+                Lata lata = new Lata(codigo, marca, sabor, precio, volumen);
+                expendedora.AgregarLata(lata);
+            }
+            else
+            {
+                Console.WriteLine("Maquina apagada");
+            }
         }
 
-        private static void ExtraerLata(Expendedora expendedora)
-        {
-            // completar
+        private static void ExtraerLata(Expendedora expendedora) {
+            if (!expendedora.Encendida) {
+                Console.WriteLine("Maquina apagada");
+                return;
+            }
+            if (expendedora.EstaVacia())
+            {
+                Console.WriteLine("Maquina Vacia");
+                return;
+            }
+            ListarStockDetalle(expendedora);
+            string codigoCompuesto = ConsolaHelper.PedirString("Codigo (formato 'codigo-volumen'): ");
+            double dinero = ConsolaHelper.PedirDouble("Dinero: ");
+            Lata lata;
+            try
+            {
+                lata = expendedora.ExtraerLata(codigoCompuesto, dinero);
+            } catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
+            Console.WriteLine("Lata extraida: " + lata);
         }
 
         private static void ObtenerBalance(Expendedora expendedora)
         {
-            // completar
+            if (!expendedora.Encendida)
+            {
+                Console.WriteLine("Maquina apagada");
+                return;
+            }
+            Console.WriteLine(expendedora.GetBalance());
         }
 
         private static void MostrarStock(Expendedora expendedora)
         {
-            // completar
+            if (!expendedora.Encendida)
+            {
+                Console.WriteLine("Maquina apagada");
+                return;
+            }
+            if (expendedora.EstaVacia())
+            {
+                Console.WriteLine("Maquina Vacia");
+                return;
+            }
+            String stock = "";
+            for (int i = 0; i < expendedora.Latas.Count; i++)
+            {
+                stock = stock + expendedora.Latas[i] + "\n";
+            }
+            Console.WriteLine(stock);
         }
 
     }

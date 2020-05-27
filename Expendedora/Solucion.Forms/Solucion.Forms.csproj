@@ -33,6 +33,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,7 +43,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgregarLataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AgregarLataForm.Designer.cs">
+      <DependentUpon>AgregarLataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExpendedoraBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExpendedoraBaseForm.Designer.cs">
+      <DependentUpon>ExpendedoraBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtraerLataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExtraerLataForm.Designer.cs">
+      <DependentUpon>ExtraerLataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListaLatasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListaLatasForm.Designer.cs">
+      <DependentUpon>ListaLatasForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockForm.Designer.cs">
+      <DependentUpon>StockForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AgregarLataForm.resx">
+      <DependentUpon>AgregarLataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExpendedoraBaseForm.resx">
+      <DependentUpon>ExpendedoraBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExtraerLataForm.resx">
+      <DependentUpon>ExtraerLataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaLatasForm.resx">
+      <DependentUpon>ListaLatasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockForm.resx">
+      <DependentUpon>StockForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Solucion.ExpendedoraNegocio\Solucion.LibreriaNegocio.csproj">
+      <Project>{862fa45c-0d45-4ed8-88fb-4f39fd7bc36f}</Project>
+      <Name>Solucion.LibreriaNegocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
