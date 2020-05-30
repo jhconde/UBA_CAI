@@ -30,16 +30,20 @@
         {
             this.listView1 = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
+            this.LatasCodigos = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listView1
             // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.LatasCodigos});
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(41, 84);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(171, 280);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.List;
             // 
             // label1
             // 
@@ -50,6 +54,10 @@
             this.label1.Size = new System.Drawing.Size(141, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Tipos de Latas";
+            // 
+            // LatasCodigos
+            // 
+            this.LatasCodigos.Width = 171;
             // 
             // ListaLatasForm
             // 
@@ -69,5 +77,6 @@
 
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ColumnHeader LatasCodigos;
     }
 }

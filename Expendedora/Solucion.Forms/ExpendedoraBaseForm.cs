@@ -14,19 +14,25 @@ namespace Solucion.Forms
 {
     public partial class ExpendedoraBaseForm : Form
     {
-        private Expendedora expendedora;
+        private Expendedora _expendedora;
+        private static Label _label3;
+        private static Label _label4;
+        private static Label _label5;
 
-        public ExpendedoraBaseForm()
+        public ExpendedoraBaseForm(Expendedora expendedoraParametro)
         {
             InitializeComponent();
-            expendedora = new Expendedora("Proveedor Test");
-            this.label1.Text = "Usando la expendedora del proveedor: " + expendedora.Proveedor;
-            ActualizarEstado();
+            _expendedora = expendedoraParametro;
+            this.label1.Text = "Usando la expendedora del proveedor: " + _expendedora.Proveedor;
+            _label3 = this.label3;
+            _label4 = this.label4;
+            _label5 = this.label5;
+            ActualizarEstado(_expendedora);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            expendedora.EncenderMaquina();
+            _expendedora.EncenderMaquina();
             MessageBox.Show("Maquina Encendida");
         }
         private void button2_Click(object sender, EventArgs e)
@@ -39,75 +45,70 @@ namespace Solucion.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (expendedora.Encendida)
+            if (!_expendedora.Encendida)
             {
                 MessageBox.Show("Maquina apagada");
                 return;
             }
-            if (expendedora.GetCapacidadRestante() == 0)
+            if (_expendedora.GetCapacidadRestante() == 0)
             {
                 MessageBox.Show("Maquina llena");
                 return;
             }
-            AgregarLataForm f = new AgregarLataForm(expendedora);
+            AgregarLataForm f = new AgregarLataForm(_expendedora);
             f.Owner = this;
             f.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (!expendedora.Encendida)
+            if (!_expendedora.Encendida)
             {
-                Console.WriteLine("Maquina apagada");
+                MessageBox.Show("Maquina apagada");
                 return;
             }
-            if (expendedora.EstaVacia())
+            if (_expendedora.EstaVacia())
             {
-                Console.WriteLine("Maquina Vacia");
+                MessageBox.Show("Maquina Vacia");
                 return;
             }
-            ExtraerLataForm f = new ExtraerLataForm(expendedora);
+            ExtraerLataForm f = new ExtraerLataForm(_expendedora);
             f.Owner = this;
             f.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (!expendedora.Encendida)
+            if (!_expendedora.Encendida)
             {
                 MessageBox.Show("Maquina apagada");
                 return;
             }
-            MessageBox.Show(expendedora.GetBalance());
+            MessageBox.Show(_expendedora.GetBalance());
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (!expendedora.Encendida)
+            if (!_expendedora.Encendida)
             {
                 MessageBox.Show("Maquina apagada");
                 return;
             }
-            if (expendedora.EstaVacia())
+            if (_expendedora.EstaVacia())
             {
                 MessageBox.Show("Maquina Vacia");
                 return;
             }
-            StockForm f = new StockForm(expendedora);
+            StockForm f = new StockForm(_expendedora);
             f.Owner = this;
             f.Show();
         }
 
-        private void ExpendedoraBaseForm_Enter(object sender, EventArgs e)
+        public static void ActualizarEstado(Expendedora expendedora)
         {
-            ActualizarEstado();
-        }
-
-        private void ActualizarEstado()
-        {
-            this.label3.Text = "Capacidad " + expendedora.Capacidad;
-            this.label5.Text = "Capacidad Restante " + expendedora.GetCapacidadRestante();
-            this.label4.Text = "Dinero $" + expendedora.Dinero;
+            _label3.Text = "Capacidad " + expendedora.Capacidad;
+            _label5.Text = "Capacidad Restante " + expendedora.GetCapacidadRestante();
+            _label4.Text = "Dinero $" + expendedora.Dinero;
         }
 
     }

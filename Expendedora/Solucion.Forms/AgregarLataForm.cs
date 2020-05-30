@@ -56,6 +56,7 @@ namespace Solucion.Forms
             Lata lata = new Lata(codigo, marca, sabor, precio, volumen);
             _expendedora.AgregarLata(lata);
             MessageBox.Show("Lata Agregada");
+            ExpendedoraBaseForm.ActualizarEstado(_expendedora);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -63,6 +64,15 @@ namespace Solucion.Forms
             this.textBox1.Text = "";
             this.textBox2.Text = "";
             this.textBox3.Text = "";
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                string textoLata = listView1.SelectedItems[0].Text;
+                this.textBox1.Text = textoLata.Substring(0, 3);
+            }
         }
     }
 }

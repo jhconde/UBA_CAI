@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{98577041-A173-430D-AE5B-84673206BCEA}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Solucion.Consola</RootNamespace>
-    <AssemblyName>Solucion.Consola</AssemblyName>
+    <ProjectGuid>{3E573F6C-AF36-4874-A11B-7293CBF79580}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Solucion.LibreriaEntidades</RootNamespace>
+    <AssemblyName>Solucion.LibreriaEntidades</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,26 +30,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup />
-  <PropertyGroup>
-    <NoWin32Manifest>true</NoWin32Manifest>
-  </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsolaHelper.cs" />
-    <Compile Include="Program.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Solucion.ExpendedoraNegocio\Solucion.LibreriaNegocio.csproj">
-      <Project>{862fa45c-0d45-4ed8-88fb-4f39fd7bc36f}</Project>
-      <Name>Solucion.LibreriaNegocio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Solucion.LibreriaEntidades\Solucion.LibreriaEntidades.csproj">
-      <Project>{3e573f6c-af36-4874-a11b-7293cbf79580}</Project>
-      <Name>Solucion.LibreriaEntidades</Name>
-    </ProjectReference>
+    <Compile Include="Entidades\Expendedora.cs" />
+    <Compile Include="Entidades\Lata.cs" />
+    <Compile Include="Exceptions\CapacidadInsuficienteException.cs" />
+    <Compile Include="Exceptions\CodigoInvalidoException.cs" />
+    <Compile Include="Exceptions\DineroInsuficienteException.cs" />
+    <Compile Include="Exceptions\SinStockException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

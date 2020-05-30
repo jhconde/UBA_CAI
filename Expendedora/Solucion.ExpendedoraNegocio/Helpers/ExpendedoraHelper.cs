@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Solucion.ExpendedoraNegocio.Entidades;
 
 namespace Solucion.ExpendedoraNegocio.Helpers
 {
@@ -23,6 +24,30 @@ namespace Solucion.ExpendedoraNegocio.Helpers
                 catalogoLatas.Add(new string[] { "FA1", "Fanta Regular", "Fanta", "Regular" });
                 catalogoLatas.Add(new string[] { "FA2", "Fanta Zero", "Fanta", "Zero" });
             }
+        }
+
+        public static void InicializarLatas(Expendedora expendedora)
+        {
+            // agregamos 12 latas al azar
+            string codigoCocaRegular = "CO1";
+            string codigoCocaZero = "CO2";
+            string codigoSpriteRegular = "SP1";
+            string codigoSpriteZero = "SP2";
+            string codigoFantaRegular = "FA1";
+            string codigoFantaZero = "FA2";
+            expendedora.Latas = new List<Lata>();
+            expendedora.Latas.Add(new Lata(codigoCocaRegular, ObtenerMarca(codigoCocaRegular), ObtenerSabor(codigoCocaRegular), 100, 350));
+            expendedora.Latas.Add(new Lata(codigoCocaRegular, ObtenerMarca(codigoCocaRegular), ObtenerSabor(codigoCocaRegular), 200, 500));
+            expendedora.Latas.Add(new Lata(codigoCocaZero, ObtenerMarca(codigoCocaZero), ObtenerSabor(codigoCocaZero), 100, 350));
+            expendedora.Latas.Add(new Lata(codigoCocaZero, ObtenerMarca(codigoCocaZero), ObtenerSabor(codigoCocaZero), 200, 500));
+            expendedora.Latas.Add(new Lata(codigoSpriteRegular, ObtenerMarca(codigoSpriteRegular), ObtenerSabor(codigoSpriteRegular), 100, 350));
+            expendedora.Latas.Add(new Lata(codigoSpriteRegular, ObtenerMarca(codigoSpriteRegular), ObtenerSabor(codigoSpriteRegular), 200, 500));
+            expendedora.Latas.Add(new Lata(codigoSpriteZero, ObtenerMarca(codigoSpriteZero), ObtenerSabor(codigoSpriteZero), 100, 350));
+            expendedora.Latas.Add(new Lata(codigoSpriteZero, ObtenerMarca(codigoSpriteZero), ObtenerSabor(codigoSpriteZero), 200, 500));
+            expendedora.Latas.Add(new Lata(codigoFantaRegular, ObtenerMarca(codigoFantaRegular), ObtenerSabor(codigoFantaRegular), 100, 350));
+            expendedora.Latas.Add(new Lata(codigoFantaRegular, ObtenerMarca(codigoFantaRegular), ObtenerSabor(codigoFantaRegular), 200, 500));
+            expendedora.Latas.Add(new Lata(codigoFantaZero, ObtenerMarca(codigoFantaZero), ObtenerSabor(codigoFantaZero), 100, 350));
+            expendedora.Latas.Add(new Lata(codigoFantaZero, ObtenerMarca(codigoFantaZero), ObtenerSabor(codigoFantaZero), 200, 500));
         }
 
         public static List<string> ObtenerCatalogo()

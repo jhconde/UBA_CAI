@@ -19,6 +19,7 @@ namespace Solucion.Forms
         public StockForm(Expendedora expendedora)
         {
             InitializeComponent();
+            _expendedora = expendedora;
             InicializarStockLista();
         }
 

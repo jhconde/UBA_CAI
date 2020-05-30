@@ -41,15 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entidades\Expendedora.cs" />
-    <Compile Include="Entidades\Lata.cs" />
-    <Compile Include="Exceptions\CapacidadInsuficienteException.cs" />
-    <Compile Include="Exceptions\CodigoInvalidoException.cs" />
-    <Compile Include="Exceptions\DineroInsuficienteException.cs" />
-    <Compile Include="Exceptions\SinStockException.cs" />
     <Compile Include="Helpers\ExpendedoraHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Solucion.LibreriaEntidades\Solucion.LibreriaEntidades.csproj">
+      <Project>{3e573f6c-af36-4874-a11b-7293cbf79580}</Project>
+      <Name>Solucion.LibreriaEntidades</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

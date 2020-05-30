@@ -57,7 +57,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(158, 39);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Listar Latas Elegibles";
+            this.button2.Text = "Tipos de Lata";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -166,7 +166,6 @@
             this.Controls.Add(this.button1);
             this.Name = "ExpendedoraBaseForm";
             this.Text = "Form1";
-            this.Enter += new System.EventHandler(this.ExpendedoraBaseForm_Enter);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -46,6 +46,7 @@
             this.listView1.Size = new System.Drawing.Size(208, 303);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.List;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // label1
@@ -66,6 +67,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Extraer";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 

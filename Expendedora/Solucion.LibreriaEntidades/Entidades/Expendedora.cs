@@ -1,5 +1,4 @@
 ﻿using Solucion.ExpendedoraNegocio.Exceptions;
-using Solucion.ExpendedoraNegocio.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,32 +24,7 @@ namespace Solucion.ExpendedoraNegocio.Entidades
             _encendida = false;
             _capacidad = CAPACIDAD_DEFAULT;
             _dinero = 0;
-            _latas = InicializarLatas();
-        }
-
-        private List<Lata> InicializarLatas()
-        {
-            // agregamos 12 latas al azar
-            List<Lata> latas = new List<Lata>();
-            string codigoCocaRegular = "CO1";
-            string codigoCocaZero = "CO2";
-            string codigoSpriteRegular = "SP1";
-            string codigoSpriteZero = "SP2";
-            string codigoFantaRegular = "FA1";
-            string codigoFantaZero = "FA2";
-            latas.Add(new Lata(codigoCocaRegular, ExpendedoraHelper.ObtenerMarca(codigoCocaRegular), ExpendedoraHelper.ObtenerSabor(codigoCocaRegular), 100, 350));
-            latas.Add(new Lata(codigoCocaRegular, ExpendedoraHelper.ObtenerMarca(codigoCocaRegular), ExpendedoraHelper.ObtenerSabor(codigoCocaRegular), 200, 500));
-            latas.Add(new Lata(codigoCocaZero, ExpendedoraHelper.ObtenerMarca(codigoCocaZero), ExpendedoraHelper.ObtenerSabor(codigoCocaZero), 100, 350));
-            latas.Add(new Lata(codigoCocaZero, ExpendedoraHelper.ObtenerMarca(codigoCocaZero), ExpendedoraHelper.ObtenerSabor(codigoCocaZero), 200, 500));
-            latas.Add(new Lata(codigoSpriteRegular, ExpendedoraHelper.ObtenerMarca(codigoSpriteRegular), ExpendedoraHelper.ObtenerSabor(codigoSpriteRegular), 100, 350));
-            latas.Add(new Lata(codigoSpriteRegular, ExpendedoraHelper.ObtenerMarca(codigoSpriteRegular), ExpendedoraHelper.ObtenerSabor(codigoSpriteRegular), 200, 500));
-            latas.Add(new Lata(codigoSpriteZero, ExpendedoraHelper.ObtenerMarca(codigoSpriteZero), ExpendedoraHelper.ObtenerSabor(codigoSpriteZero), 100, 350));
-            latas.Add(new Lata(codigoSpriteZero, ExpendedoraHelper.ObtenerMarca(codigoSpriteZero), ExpendedoraHelper.ObtenerSabor(codigoSpriteZero), 200, 500));
-            latas.Add(new Lata(codigoFantaRegular, ExpendedoraHelper.ObtenerMarca(codigoFantaRegular), ExpendedoraHelper.ObtenerSabor(codigoFantaRegular), 100, 350));
-            latas.Add(new Lata(codigoFantaRegular, ExpendedoraHelper.ObtenerMarca(codigoFantaRegular), ExpendedoraHelper.ObtenerSabor(codigoFantaRegular), 200, 500));
-            latas.Add(new Lata(codigoFantaZero, ExpendedoraHelper.ObtenerMarca(codigoFantaZero), ExpendedoraHelper.ObtenerSabor(codigoFantaZero), 100, 350));
-            latas.Add(new Lata(codigoFantaZero, ExpendedoraHelper.ObtenerMarca(codigoFantaZero), ExpendedoraHelper.ObtenerSabor(codigoFantaZero), 200, 500));
-            return latas;
+            _latas = new List<Lata>();
         }
 
         public void AgregarLata(Lata lata)
@@ -87,7 +61,7 @@ namespace Solucion.ExpendedoraNegocio.Entidades
             {
                 throw new DineroInsuficienteException("La lata sale " + lata.Precio + ", el usuario ingresó " + dinero);
             }
-
+            _dinero = _dinero + lata.Precio;
             _latas.Remove(lata);
             return lata;
         }

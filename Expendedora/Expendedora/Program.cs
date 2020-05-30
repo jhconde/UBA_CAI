@@ -27,6 +27,7 @@ namespace Solucion.Consola
 
             // Creo el objeto con el que voy a trabajar en este programa
             Expendedora expendedora = new Expendedora("Proveedor Test");
+            ExpendedoraHelper.InicializarLatas(expendedora);
 
             // pantalla de bienvenida
             Console.WriteLine("Usando la expendedora del proveedor: " + expendedora.Proveedor);
@@ -104,6 +105,11 @@ namespace Solucion.Consola
 
         private static void ListarStockDetalle(Expendedora expendedora)
         {
+            if (!expendedora.Encendida)
+            {
+                Console.WriteLine("Maquina apagada");
+                return;
+            }
             string stockDetalleString = "";
             List<string> stockDetalle = expendedora.GetStockDetalle();
             for (int i = 0; i < stockDetalle.Count; i++)
