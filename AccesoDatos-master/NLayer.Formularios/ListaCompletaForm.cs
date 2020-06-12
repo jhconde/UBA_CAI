@@ -16,14 +16,14 @@ namespace NLayer.Formularios
     {
 
         private ClienteServicio clienteServicio;
-        public ListaCompletaForm()
+        public ListaCompletaForm(string tipoVista, string valorBusqueda)
         {
             InitializeComponent();
             clienteServicio = new ClienteServicio();
-            inicializarTabla();
+            inicializarTabla(tipoVista, valorBusqueda);
         }
 
-        private void inicializarTabla()
+        private void inicializarTabla(string tipoVista, string valorBusqueda)
         {
             
             dataGridView1.ColumnCount = 5;
@@ -33,7 +33,19 @@ namespace NLayer.Formularios
             dataGridView1.Columns[3].Name = "Fecha de Nacimiento";
             dataGridView1.Columns[4].Name = "Edad";
 
-            List<Cliente> clientes = clienteServicio.TraerClientes();
+            List<Cliente> clientes;
+            switch (tipoVista)
+            {
+                case "edad":
+                    clientes = clienteServicio.TraerClientesPorEdadMayores(int.Parse(valorBusqueda));
+                    break;
+                case "apellido":
+                    clientes = clienteServicio.TraerClientesPorApellido(valorBusqueda);
+                    break;
+                default:
+                    clientes = clienteServicio.TraerClientes();
+                    break;
+            }
             foreach (Cliente c in clientes)
             {
                 string[] row = new string[] { c.Nombre, c.Ape, 

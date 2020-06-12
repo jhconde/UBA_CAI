@@ -17,8 +17,37 @@ namespace NLayer.Negocio
 
         public List<Cliente> TraerClientes()
         {
-            List<Cliente> result = mapper.TraerTodos();
-            return result;
+            List<Cliente> clientes = mapper.TraerTodos();
+            return clientes;
         }
+
+        public List<Cliente> TraerClientesPorEdadMayores(int edad)
+        {
+            List<Cliente> clientes = TraerClientes();
+            List<Cliente> resultado = new List<Cliente>();
+            foreach (Cliente c in clientes)
+            {
+                if (int.Parse(c.GetEdad()) > edad)
+                {
+                    resultado.Add(c);
+                }
+            }
+            return resultado;
+        }
+
+        public List<Cliente> TraerClientesPorApellido(string apellido)
+        {
+            List<Cliente> clientes = TraerClientes();
+            List<Cliente> resultado = new List<Cliente>();
+            foreach (Cliente c in clientes)
+            {
+                if (c.Ape.ToLower() == apellido.ToLower())
+                {
+                    resultado.Add(c);
+                }
+            }
+            return resultado;
+        }
+
     }
 }
