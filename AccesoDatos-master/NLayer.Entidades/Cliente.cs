@@ -14,7 +14,9 @@ namespace NLayer.Entidades
         private string _nombre;
         private string _apellido;
         private string _direccion;
-        private string _fechaNacimiento;
+        private DateTime _fechaNacimiento;
+        private string _email;
+        private string _telefono;
 
         [DataMember]
         public string Nombre { get => _nombre; set => _nombre = value; }
@@ -26,13 +28,17 @@ namespace NLayer.Entidades
         public string Direccion { get => _direccion; set => _direccion = value; }
 
         [DataMember]
-        public string FechaNacimiento { get => _fechaNacimiento; set => _fechaNacimiento = value; }
+        public DateTime FechaNacimiento { get => _fechaNacimiento; set => _fechaNacimiento = value; }
+
+        [DataMember]
+        public string Email { get => _email; set => _email = value; }
+
+        [DataMember]
+        public string Telefono { get => _telefono; set => _telefono = value; }
 
         public string GetEdad()
         {
-            DateTime fechaNacimientoDateTime = DateTime.ParseExact(FechaNacimiento, 
-                "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
-            int edad = (DateTime.Now - fechaNacimientoDateTime).Days / 365;
+            int edad = (DateTime.Now - _fechaNacimiento).Days / 365;
             return edad.ToString();
         }
 

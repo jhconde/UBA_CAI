@@ -51,5 +51,12 @@ namespace NLayer.Formularios
             form.Owner = this;
             form.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ClienteInsert form = new ClienteInsert();
+            form.Owner = this;
+            form.Show();
+        }
     }
 }

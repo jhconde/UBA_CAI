@@ -41,12 +41,22 @@ namespace NLayer.Negocio
             List<Cliente> resultado = new List<Cliente>();
             foreach (Cliente c in clientes)
             {
-                if (c.Ape.ToLower() == apellido.ToLower())
+                if (c.Ape != null && c.Ape.ToLower() == apellido.ToLower())
                 {
                     resultado.Add(c);
                 }
             }
             return resultado;
+        }
+
+        public int InsertarCliente(Cliente cliente)
+        {
+            TransactionResult resultante = mapper.Insert(cliente);
+
+            if (resultante.IsOk)
+                return resultante.Id;
+            else
+                throw new Exception("Hubo un error en la petición al servidor. Detalle: " + resultante.Error);
         }
 
     }
