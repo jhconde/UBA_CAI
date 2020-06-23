@@ -63,6 +63,7 @@ namespace NLayer.Formularios
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 Console.WriteLine(ex);
             }
             
@@ -78,7 +79,6 @@ namespace NLayer.Formularios
             this.textBox1.Text = ""; // nombre
             this.textBox2.Text = ""; // apellido
             this.textBox3.Text = ""; // direccion
-            this.dateTimePicker1.Value = DateTime.Now;
             this.textBox4.Text = ""; // email
             this.textBox5.Text = ""; // telefono
         }

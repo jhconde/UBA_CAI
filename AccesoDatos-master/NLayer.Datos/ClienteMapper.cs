@@ -14,7 +14,7 @@ namespace NLayer.Datos
     {
         public List<Cliente> TraerTodos()
         {
-            string json2 = WebHelper.Get("/api/v1/cliente"); // trae un texto en formato json de una web
+            string json2 = WebHelper.Get("/api/v1/cliente/" + ConfigurationManager.AppSettings["Legajo"]); // trae un texto en formato json de una web
             List<Cliente> resultado = MapList(json2);
             return resultado;
         }
@@ -45,7 +45,7 @@ namespace NLayer.Datos
             n.Add("Usuario", ConfigurationManager.AppSettings["Legajo"]);
             n.Add("Email", cliente.Email); // STRING
             n.Add("Telefono", cliente.Telefono.ToString()); // INT
-            n.Add("FechaNacimiento", cliente.FechaNacimiento.ToShortDateString()); // DateTime
+            n.Add("FechaNacimiento", cliente.FechaNacimiento.ToString()); // DateTime
             n.Add("Activo", "true"); // bool
             return n;
         }

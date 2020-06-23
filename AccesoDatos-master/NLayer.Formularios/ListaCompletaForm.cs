@@ -35,24 +35,32 @@ namespace NLayer.Formularios
             dataGridView1.Columns[5].Name = "Email";
             dataGridView1.Columns[6].Name = "Telefono";
 
-            List<Cliente> clientes;
-            switch (tipoVista)
+            
+            try
             {
-                case "edad":
-                    clientes = clienteServicio.TraerClientesPorEdadMayores(int.Parse(valorBusqueda));
-                    break;
-                case "apellido":
-                    clientes = clienteServicio.TraerClientesPorApellido(valorBusqueda);
-                    break;
-                default:
-                    clientes = clienteServicio.TraerClientes();
-                    break;
+                List<Cliente> clientes;
+                switch (tipoVista)
+                {
+                    case "edad":
+                        clientes = clienteServicio.TraerClientesPorEdadMayores(int.Parse(valorBusqueda));
+                        break;
+                    case "apellido":
+                        clientes = clienteServicio.TraerClientesPorApellido(valorBusqueda);
+                        break;
+                    default:
+                        clientes = clienteServicio.TraerClientes();
+                        break;
+                }
+                foreach (Cliente c in clientes)
+                {
+                    string[] row = new string[] { c.Nombre, c.Ape, 
+                        c.Direccion, c.FechaNacimiento.ToShortDateString(), c.GetEdad(), c.Email, c.Telefono };
+                    dataGridView1.Rows.Add(row);
+                }
             }
-            foreach (Cliente c in clientes)
+            catch(Exception e)
             {
-                string[] row = new string[] { c.Nombre, c.Ape, 
-                    c.Direccion, c.FechaNacimiento.ToShortDateString(), c.GetEdad(), c.Email, c.Telefono };
-                dataGridView1.Rows.Add(row);
+                MessageBox.Show(e.Message);
             }
             
         }
